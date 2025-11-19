@@ -1,0 +1,18 @@
+[project]
+name = "generic-wireless"
+version = "0.1.0"
+description = "通用无线MAC层模型，在不关心MAC层具体实现的情况下，可以使用此模型进行模拟MAC层提供的通信能力。"
+authors = [
+    { name = "jiazequn", email = "jia199474@znetlink.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "miaosuan"
+]
+
+[project.scripts]
+generic-wireless = "generic_wireless:main"
+
+[build-system]
+requires = ["uv_build>=0.9.4,<0.10.0"]
+build-backend = "uv_build"

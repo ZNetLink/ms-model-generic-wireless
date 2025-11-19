@@ -1,0 +1,33 @@
+{
+    "name": "ms-model-generic-wireless",
+    "repo_url": "https://github.com/znetlink/ms-model-generic-wireless",
+    "version": "0.1.0",
+    "description": "通用无线MAC层模型，在不关心MAC层具体实现的情况下，可以使用此模型进行模拟MAC层提供的通信能力。",
+    "author": "ZNetLink",
+    "email": "jiazequn@znetlink.com",
+    "license": "GPL-3.0",
+    "labels": [
+        "mac"
+    ],
+    "content": {
+        "iconLibraries": [],
+        "scenarios": [],
+        "platforms": [],
+        "devices": [],
+        "processes": [
+            {
+                "model": "models/generic_wireless.pr.m",
+                "pyPkgPath": "pycodes/generic_wireless"
+            }
+        ],
+        "links": [],
+        "traffics": [],
+        "modulations": [],
+        "packets": [
+            "models/generic_wireless_mac.pkt.m"
+        ],
+        "icis": [
+            "models/generic_wireless_mac_ici.ici.m"
+        ]
+    }
+}
