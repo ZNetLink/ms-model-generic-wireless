@@ -35,7 +35,7 @@ def generic_wireless_ecc(packet) -> None:
     ms.td_set(packet, ms.OPC_TDA_RA_PK_ACCEPT, accept)
 
 
-@ms.pipeline_stage("generic_wireless_rx_group")
+@ms.pipeline_stage("generic_wireless_rxgroup")
 def generic_wireless_rx_group(tx_channel: SimObj, rx_channel: SimObj) -> bool:
     # 如果收信机和发信机处于同一节点内，则不为配对收发信机
     # note: 这里与OP不同，channel -> module -> node，只需要两次parent获取到节点，OP需要3次
