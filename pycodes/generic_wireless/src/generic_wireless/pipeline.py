@@ -3,6 +3,13 @@ from miaosuan.engine.simobj import (
     SimObj,
 )
 
+
+def _get_channel_index(channel: SimObj) -> int:
+    if hasattr(channel, "get_index"):
+        return channel.get_index()
+    return getattr(channel, "index", 0)
+
+@ms.pipeline_stage("generic_wireless_closure")
 def generic_wireless_closure(packet) -> None:
     # 获取该数据包的传输距离
     start_dist = ms.td_get(packet, ms.OPC_TDA_RA_START_DIST)
@@ -20,6 +27,7 @@ def generic_wireless_closure(packet) -> None:
     ms.td_set(packet, ms.OPC_TDA_RA_CLOSURE, True)
 
 
+@ms.pipeline_stage("generic_wireless_ecc")
 def generic_wireless_ecc(packet) -> None:
     # 获取信道闭合情况
     accept = ms.td_get(packet, ms.OPC_TDA_RA_CLOSURE)
@@ -27,6 +35,7 @@ def generic_wireless_ecc(packet) -> None:
     ms.td_set(packet, ms.OPC_TDA_RA_PK_ACCEPT, accept)
 
 
+@ms.pipeline_stage("generic_wireless_rx_group")
 def generic_wireless_rx_group(tx_channel: SimObj, rx_channel: SimObj) -> bool:
     # 如果收信机和发信机处于同一节点内，则不为配对收发信机
     # note: 这里与OP不同，channel -> module -> node，只需要两次parent获取到节点，OP需要3次
@@ -69,6 +78,7 @@ def generic_wireless_rx_group(tx_channel: SimObj, rx_channel: SimObj) -> bool:
     return True
 
 
+@ms.pipeline_stage("generic_wireless_txdel")
 def generic_wireless_txdel(packet) -> None:
     tx_data_rate = ms.td_get(packet, ms.OPC_TDA_RA_TX_DRATE)
     pk_len = ms.pk_total_size_get(packet)
@@ -78,9 +88,3 @@ def generic_wireless_txdel(packet) -> None:
     ms.td_set(packet, ms.OPC_TDA_RA_TX_DELAY, tx_delay)
 
     # todo: dump routes
-
-
-def _get_channel_index(channel: SimObj) -> int:
-    if hasattr(channel, "get_index"):
-        return channel.get_index()
-    return getattr(channel, "index", 0)

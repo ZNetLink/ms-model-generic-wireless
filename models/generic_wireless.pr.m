@@ -1,7 +1,12 @@
 {
+  "kind": "python",
   "interface": {
     "begsim_intrpt": true,
-    "priority": 0
+    "endsim_intrpt": false,
+    "failure_intrpts": false,
+    "recovery_intrpts": false,
+    "priority": 0,
+    "super_priority": false
   },
   "attributes": [
     {
@@ -10,15 +15,15 @@
       "type": "int",
       "desc": "",
       "unit": "",
-      "validator": "",
       "defaultValue": -2,
       "symbolMap": [
         {
-          "key": "Auto Assigned",
-          "value": -2
+          "key": "自动编址",
+          "value": "-2"
         }
       ],
-      "allowOtherValues": true
+      "allowOtherValues": true,
+      "children": []
     },
     {
       "name": "电台工作参数",
@@ -26,8 +31,7 @@
       "type": "object",
       "desc": "",
       "unit": "",
-      "validator": "",
-      "defaultValue": {},
+      "defaultValue": "",
       "symbolMap": [],
       "allowOtherValues": true,
       "children": [
@@ -37,144 +41,148 @@
           "type": "bool",
           "desc": "",
           "unit": "",
-          "validator": "",
           "defaultValue": false,
           "symbolMap": [
             {
-              "value": false,
-              "label": "关闭"
+              "key": "关闭",
+              "value": "false"
             },
             {
-              "value": true,
-              "label": "工作"
+              "key": "工作",
+              "value": "true"
             }
           ],
-          "allowOtherValues": false
+          "allowOtherValues": true,
+          "children": []
         },
         {
           "name": "数据速率",
           "label": "数据速率",
           "type": "float",
+          "desc": "",
           "unit": "kbps",
-          "validator": "",
           "defaultValue": 38.4,
-          "symbolMap": [
-          ],
-          "allowOtherValues": false
+          "symbolMap": [],
+          "allowOtherValues": true,
+          "children": []
         },
         {
           "name": "工作频段",
           "label": "工作频段",
           "type": "float",
+          "desc": "",
           "unit": "MHz",
-          "validator": "",
-          "defaultValue": 30.0,
-          "symbolMap": [
-          ],
-          "allowOtherValues": true
+          "defaultValue": 30,
+          "symbolMap": [],
+          "allowOtherValues": true,
+          "children": []
         },
         {
           "name": "工作频宽",
           "label": "工作频宽",
           "type": "float",
+          "desc": "",
           "unit": "kHz",
-          "validator": "",
-          "defaultValue": 100.0,
-          "symbolMap": [
-          ],
-          "allowOtherValues": true
+          "defaultValue": 100,
+          "symbolMap": [],
+          "allowOtherValues": true,
+          "children": []
         },
         {
           "name": "调制解调方案",
           "label": "调制解调方案",
           "type": "string",
-          "desc": "调制解调方案",
+          "desc": "",
           "unit": "",
-          "validator": "",
           "defaultValue": "BPSK",
           "symbolMap": [
             {
-              "value": "BPSK",
-              "label": "BPSK"
+              "key": "BPSK",
+              "value": "BPSK"
             },
             {
-              "value": "QPSK",
-              "label": "QPSK"
+              "key": "QPSK",
+              "value": "QPSK"
             },
             {
-              "value": "16QAM",
-              "label": "16QAM"
+              "key": "16QAM",
+              "value": "16QAM"
             },
             {
-              "value": "64QAM",
-              "label": "64QAM"
+              "key": "64QAM",
+              "value": "64QAM"
             }
           ],
-          "allowOtherValues": false
+          "allowOtherValues": true,
+          "children": []
         },
         {
           "name": "最大传输距离",
           "label": "最大传输距离",
           "type": "float",
+          "desc": "",
           "unit": "公里",
-          "validator": "",
-          "defaultValue": 999999999.0,
+          "defaultValue": 999999999,
           "symbolMap": [
             {
-              "value": 999999999.0,
-              "label": "无限制"
+              "key": "无限制",
+              "value": "999999999.0"
             }
           ],
-          "allowOtherValues": true
+          "allowOtherValues": true,
+          "children": []
         },
         {
           "name": "传输功率",
           "label": "传输功率",
           "type": "float",
+          "desc": "",
           "unit": "瓦特",
-          "validator": "",
-          "defaultValue": 30.0,
+          "defaultValue": 30,
           "symbolMap": [],
-          "allowOtherValues": true
+          "allowOtherValues": true,
+          "children": []
         },
         {
           "name": "接收灵敏度",
           "label": "接收灵敏度",
           "type": "float",
+          "desc": "",
           "unit": "dBm",
-          "validator": "",
-          "defaultValue": -100.0,
+          "defaultValue": -100,
           "symbolMap": [],
-          "allowOtherValues": true
+          "allowOtherValues": true,
+          "children": []
         },
         {
           "name": "缓存大小",
           "label": "缓存大小",
           "type": "int",
+          "desc": "",
           "unit": "包",
-          "validator": "",
           "defaultValue": 1000,
           "symbolMap": [],
-          "allowOtherValues": true
+          "allowOtherValues": true,
+          "children": []
         },
         {
           "name": "分片生存时间",
           "label": "分片生存时间",
           "type": "float",
+          "desc": "",
           "unit": "秒",
-          "validator": "",
-          "defaultValue": 20.0,
+          "defaultValue": 20,
           "symbolMap": [],
-          "allowOtherValues": true
+          "allowOtherValues": true,
+          "children": []
         },
         {
           "name": "失效/恢复状态",
           "label": "失效/恢复状态",
           "type": "array",
-          "desc": "失效/恢复状态",
+          "desc": "",
           "unit": "",
-          "validator": "",
-          "defaultValue": [],
+          "defaultValue": "",
           "symbolMap": [],
           "allowOtherValues": true,
           "children": [
@@ -182,11 +190,12 @@
               "name": "时间",
               "label": "时间",
               "type": "float",
-              "unit": "秒",
-              "validator": "",
-              "defaultValue": 0.0,
+              "desc": "",
+              "unit": "",
+              "defaultValue": 0,
               "symbolMap": [],
-              "allowOtherValues": true
+              "allowOtherValues": true,
+              "children": []
             },
             {
               "name": "状态",
@@ -194,23 +203,284 @@
               "type": "int",
               "desc": "",
               "unit": "",
-              "validator": "",
               "defaultValue": 0,
               "symbolMap": [
                 {
-                  "value": 0,
-                  "label": "失效"
+                  "key": "0",
+                  "value": "失效"
                 },
                 {
-                  "value": 1,
-                  "label": "恢复"
+                  "key": "1",
+                  "value": "恢复"
                 }
               ],
-              "allowOtherValues": false
+              "allowOtherValues": true,
+              "children": []
             }
           ]
         }
       ]
     }
-  ]
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "43ca7853-eada-4d3d-bc35-9387e350ef14",
+        "name": "Init",
+        "mandatory": false,
+        "entryCreated": true,
+        "exitCreated": false,
+        "entryCode": "",
+        "exitCode": "",
+        "position": {
+          "x": 170,
+          "y": 140
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        }
+      },
+      {
+        "id": "54882ee4-cbcd-4e48-8e69-23bac60b4d25",
+        "name": "Register",
+        "mandatory": false,
+        "entryCreated": true,
+        "exitCreated": false,
+        "entryCode": "",
+        "exitCode": "",
+        "position": {
+          "x": 345.2983736270121,
+          "y": 140
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        }
+      },
+      {
+        "id": "5620e82c-fbde-4708-b4d9-a1d6b553064e",
+        "name": "Obtain",
+        "mandatory": false,
+        "entryCreated": true,
+        "exitCreated": false,
+        "entryCode": "",
+        "exitCode": "",
+        "position": {
+          "x": 503.0687081307051,
+          "y": 140
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        }
+      },
+      {
+        "id": "8c357364-c7ec-4cf4-a9e2-9e8b8a6fea5c",
+        "name": "RefreshRx",
+        "mandatory": false,
+        "entryCreated": true,
+        "exitCreated": false,
+        "entryCode": "",
+        "exitCode": "",
+        "position": {
+          "x": 672.6235687846506,
+          "y": 140
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        }
+      },
+      {
+        "id": "4603083c-9f4f-4250-a6fc-7dddc5488a54",
+        "name": "Idle",
+        "mandatory": false,
+        "entryCreated": true,
+        "exitCreated": true,
+        "entryCode": "",
+        "exitCode": "",
+        "position": {
+          "x": 850,
+          "y": 140
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        }
+      },
+      {
+        "id": "f77e6b31-365a-42b9-98d4-7d955a1acd52",
+        "name": "Disabled",
+        "mandatory": false,
+        "entryCreated": true,
+        "exitCreated": true,
+        "entryCode": "",
+        "exitCode": "",
+        "position": {
+          "x": 300,
+          "y": 310
+        },
+        "size": {
+          "width": 96,
+          "height": 96
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "6c0012fe-4f6c-4cec-b98c-d6265117a70b",
+        "source": {
+          "x": 120,
+          "y": 188
+        },
+        "target": {
+          "cell": "43ca7853-eada-4d3d-bc35-9387e350ef14"
+        },
+        "condition": "",
+        "handlerCreated": false,
+        "connector": null,
+        "vertices": [],
+        "initialMarker": true
+      },
+      {
+        "id": "e7026d72-f6bd-4787-8b5c-d19f3537650a",
+        "source": {
+          "cell": "43ca7853-eada-4d3d-bc35-9387e350ef14",
+          "selector": "> circle:nth-child(1)"
+        },
+        "target": {
+          "cell": "54882ee4-cbcd-4e48-8e69-23bac60b4d25",
+          "selector": "> circle:nth-child(1)"
+        },
+        "condition": "",
+        "handlerCreated": true,
+        "connector": "smooth",
+        "vertices": [],
+        "initialMarker": false
+      },
+      {
+        "id": "45a59403-061f-4914-88c2-7f59e8869755",
+        "source": {
+          "cell": "43ca7853-eada-4d3d-bc35-9387e350ef14",
+          "selector": "> circle:nth-child(1)"
+        },
+        "target": {
+          "cell": "f77e6b31-365a-42b9-98d4-7d955a1acd52"
+        },
+        "condition": "",
+        "handlerCreated": true,
+        "connector": "smooth",
+        "vertices": [],
+        "initialMarker": false
+      },
+      {
+        "id": "32d47c6b-8496-4ded-9f40-7164dc8f9bf0",
+        "source": {
+          "cell": "54882ee4-cbcd-4e48-8e69-23bac60b4d25",
+          "selector": "> circle:nth-child(1)"
+        },
+        "target": {
+          "cell": "5620e82c-fbde-4708-b4d9-a1d6b553064e",
+          "selector": "> circle:nth-child(1)"
+        },
+        "condition": "",
+        "handlerCreated": true,
+        "connector": "smooth",
+        "vertices": [],
+        "initialMarker": false
+      },
+      {
+        "id": "8f2855d3-7cc8-43d7-89be-dab688387bb2",
+        "source": {
+          "cell": "5620e82c-fbde-4708-b4d9-a1d6b553064e",
+          "selector": "> circle:nth-child(1)"
+        },
+        "target": {
+          "cell": "8c357364-c7ec-4cf4-a9e2-9e8b8a6fea5c"
+        },
+        "condition": "",
+        "handlerCreated": true,
+        "connector": "smooth",
+        "vertices": [],
+        "initialMarker": false
+      },
+      {
+        "id": "c74d4edc-1b2f-409e-8a52-14b134f76e64",
+        "source": {
+          "cell": "8c357364-c7ec-4cf4-a9e2-9e8b8a6fea5c",
+          "selector": "> circle:nth-child(1)"
+        },
+        "target": {
+          "cell": "4603083c-9f4f-4250-a6fc-7dddc5488a54"
+        },
+        "condition": "",
+        "handlerCreated": true,
+        "connector": "smooth",
+        "vertices": [],
+        "initialMarker": false
+      },
+      {
+        "id": "19786061-3912-4ff9-a43c-90525b5d0a79",
+        "source": {
+          "cell": "4603083c-9f4f-4250-a6fc-7dddc5488a54",
+          "selector": "> circle:nth-child(1)"
+        },
+        "target": {
+          "cell": "4603083c-9f4f-4250-a6fc-7dddc5488a54"
+        },
+        "condition": "",
+        "handlerCreated": true,
+        "connector": {
+          "name": "smooth"
+        },
+        "vertices": [
+          {
+            "x": 956,
+            "y": 135
+          },
+          {
+            "x": 1004,
+            "y": 188
+          },
+          {
+            "x": 956,
+            "y": 241
+          }
+        ],
+        "initialMarker": false
+      },
+      {
+        "id": "145ed1e8-4f2e-4cbc-808d-8e47719ef801",
+        "source": {
+          "cell": "f77e6b31-365a-42b9-98d4-7d955a1acd52",
+          "selector": "> circle:nth-child(1)"
+        },
+        "target": {
+          "cell": "f77e6b31-365a-42b9-98d4-7d955a1acd52"
+        },
+        "condition": "",
+        "handlerCreated": true,
+        "connector": {
+          "name": "smooth"
+        },
+        "vertices": [
+          {
+            "x": 406,
+            "y": 305
+          },
+          {
+            "x": 454,
+            "y": 358
+          },
+          {
+            "x": 406,
+            "y": 411
+          }
+        ],
+        "initialMarker": false
+      }
+    ],
+    "initialStateId": "43ca7853-eada-4d3d-bc35-9387e350ef14"
+  }
 }
