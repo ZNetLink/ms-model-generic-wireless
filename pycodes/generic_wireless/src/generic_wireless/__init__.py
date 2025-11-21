@@ -62,6 +62,60 @@ class GenericWirelessProcess:
         self._sv_init()
         self._transceiver_init()
         ms.intrpt_schedule_self(ms.sim_time(), 0)
+                
+        # 注册统计句柄
+        self.load_bps = ms.register_stat("Generic Wireless.<plt_name>.<device_name>.Load(bps)", 
+                                         ms.StatMode(
+                                            mode=ms.StatCaptureMode.BUCKET, 
+                                            total_captures=100,
+                                            agg=ms.StatAgg.SUM_PER_TIME))
+        self.load_pps = ms.register_stat("Generic Wireless.<plt_name>.<device_name>.Load(pps)", 
+                                         ms.StatMode(
+                                            mode=ms.StatCaptureMode.BUCKET,
+                                            total_captures=100,
+                                            agg=ms.StatAgg.SUM_PER_TIME))
+        
+        self.throughput_bps = ms.register_stat("Generic Wireless.<plt_name>.<device_name>.Throughput(bps)", 
+                                               ms.StatMode(
+                                                mode=ms.StatCaptureMode.BUCKET, 
+                                                total_captures=100,
+                                                agg=ms.StatAgg.SUM_PER_TIME))
+        self.throughput_pps = ms.register_stat("Generic Wireless.<plt_name>.<device_name>.Throughput(pps)", 
+                                               ms.StatMode(
+                                                mode=ms.StatCaptureMode.BUCKET, 
+                                                total_captures=100,
+                                                agg=ms.StatAgg.SUM_PER_TIME))
+        self.e2e_delay = ms.register_stat("Generic Wireless.<plt_name>.<device_name>.E2E Delay(s)", 
+                                           ms.StatMode(
+                                            mode=ms.StatCaptureMode.BUCKET, 
+                                            total_captures=100,
+                                            agg=ms.StatAgg.SAMPLE_MEAN))
+        
+        self.global_load_bps = ms.register_stat("Global.Generic Wireless.Load(bps)", 
+                                         ms.StatMode(
+                                            mode=ms.StatCaptureMode.BUCKET, 
+                                            total_captures=100,
+                                            agg=ms.StatAgg.SUM_PER_TIME))
+        self.global_load_pps = ms.register_stat("Global.Generic Wireless.Load(pps)", 
+                                         ms.StatMode(
+                                            mode=ms.StatCaptureMode.BUCKET, 
+                                            total_captures=100,
+                                            agg=ms.StatAgg.SUM_PER_TIME))
+        self.global_throughput_bps = ms.register_stat("Global.Generic Wireless.Throughput(bps)", 
+                                               ms.StatMode(
+                                                mode=ms.StatCaptureMode.BUCKET, 
+                                                total_captures=100,
+                                                agg=ms.StatAgg.SUM_PER_TIME))
+        self.global_throughput_pps = ms.register_stat("Global.Generic Wireless.Throughput(pps)", 
+                                               ms.StatMode(
+                                                mode=ms.StatCaptureMode.BUCKET, 
+                                                total_captures=100,
+                                                agg=ms.StatAgg.SUM_PER_TIME))
+        self.global_e2e_delay = ms.register_stat("Global.Generic Wireless.E2E Delay(s)", 
+                                           ms.StatMode(
+                                            mode=ms.StatCaptureMode.BUCKET, 
+                                            total_captures=100,
+                                            agg=ms.StatAgg.SAMPLE_MEAN))
 
     @ms.state_enter("Register")
     def enter_register(self) -> None:
@@ -327,12 +381,19 @@ class GenericWirelessProcess:
             return
 
         # 获取数据包大小
-        # pkt_size = ms.pk_total_size_get(ip_pkt)
+        pkt_size = ms.pk_total_size_get(ip_pkt)
+        
+        self.load_bps.record(pkt_size)
+        self.load_pps.record(1)
+        self.global_load_bps.record(pkt_size)
+        self.global_load_pps.record(1)
 
         # 获取ICI指针和其承载的信息
         arp_ici = ms.intrpt_ici()
         dest_addr = arp_ici.get_int("dest_addr")
         protocol_type = arp_ici.get_int("protocol_type")
+
+        ms.pk_stamp(ip_pkt)
 
         # todo: 我觉得这个逻辑有点问题，不应该在这里打IP包的时间戳吧
         # 将IP数据包进行MAC封装
@@ -386,10 +447,17 @@ class GenericWirelessProcess:
         ms.pk_destroy(mac_pkt)
 
     def _send_ip_pkt_to_upper(self, ip_pkt, source_address: int, dest_address: int, protocol_type: int) -> None:
-        # todo: 记录吞吐量信息
+        # 记录吞吐量信息
+        self.global_throughput_bps.record(ms.pk_total_size_get(ip_pkt))
+        self.global_throughput_pps.record(1)
+        self.throughput_bps.record(ms.pk_total_size_get(ip_pkt))
+        self.throughput_pps.record(1)
+        
 
-        # todo: 记录MAC层数据包队列时延
-        # e2e_delay = ms.sim_time() - ms.pk_stamp_time_get(ip_pkt)
+        # 记录MAC层数据包队列时延
+        e2e_delay = ms.sim_time() - ms.pk_stamp_time_get(ip_pkt)
+        self.e2e_delay.record(e2e_delay)
+        self.global_e2e_delay.record(e2e_delay)
 
         # 设置与ARP关联的ICI属性
         self.llc_ici.set_int("src_addr", source_address)
