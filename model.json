@@ -28,6 +28,13 @@
         ],
         "icis": [
             "models/generic_wireless_mac_ici.ici.m"
+        ],
+        "metrics": [
+            {
+                "name": "GenericWireless",
+                "desc": "通用无线MAC层模型全部",
+                "pattern": "Generic Wireless.*"
+            }
         ]
     }
 }
