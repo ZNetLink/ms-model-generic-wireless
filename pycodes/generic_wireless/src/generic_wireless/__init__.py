@@ -227,7 +227,7 @@ class GenericWirelessProcess:
             # 收到来自上层的数据包
             self._process_higher_pkt()
         elif intrpt_type == INTRPT_TYPE_STRM and ms.intrpt_strm() == self.rx_in_stream:
-            # 获取来自ARP的MAC地址
+            # 获取来自收信机的MAC地址
             self._process_lower_pkt()
 
     @ms.state_exit("Disabled")
