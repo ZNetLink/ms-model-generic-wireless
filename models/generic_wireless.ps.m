@@ -1,0 +1,1 @@
+{"pythonPackageFiles":["README.md","pyproject.toml","src/msps_generic_wireless/__init__.py"]}

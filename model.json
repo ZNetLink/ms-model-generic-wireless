@@ -35,6 +35,12 @@
                 "desc": "通用无线MAC层模型全部",
                 "pattern": "Generic Wireless.*"
             }
+        ],
+        "pipelines": [
+            {
+                "model": "models/generic_wireless.ps.m",
+                "pyPkgPath": "pycodes/msps_generic_wireless"
+            }
         ]
     }
 }

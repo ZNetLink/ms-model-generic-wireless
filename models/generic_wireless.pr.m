@@ -486,7 +486,6 @@
   "pythonPackageFiles": [
     "README.md",
     "pyproject.toml",
-    "src/generic_wireless/__init__.py",
-    "src/generic_wireless/pipeline.py"
+    "src/generic_wireless/__init__.py"
   ]
 }
