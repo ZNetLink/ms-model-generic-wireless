@@ -15,8 +15,6 @@ from miaosuan.engine.simobj import (
 from miaosuan.mms.auto_addr import aa_address_handle_get, aa_address_resolve
 from miaosuan.mms.process_registry import AttrType, pr_attr_set, pr_register
 
-from . import pipeline
-
 logger = logging.getLogger(__name__)
 
 EPSILON = 1e-9
