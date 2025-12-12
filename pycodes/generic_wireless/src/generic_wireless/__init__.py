@@ -183,31 +183,31 @@ class GenericWirelessProcess:
     def enter_disabled(self) -> None:
         pass
 
-    @ms.transition("Init", "Register")
+    @ms.transition("Init", "Register", "e7026d72-f6bd-4787-8b5c-d19f3537650a")
     def init_to_register(self) -> bool:
         return self.working_status
 
-    @ms.transition("Init", "Disabled")
+    @ms.transition("Init", "Disabled", "45a59403-061f-4914-88c2-7f59e8869755")
     def init_to_disabled(self) -> bool:
         return not self.working_status
 
-    @ms.transition("Register", "Obtain")
+    @ms.transition("Register", "Obtain", "32d47c6b-8496-4ded-9f40-7164dc8f9bf0")
     def register_to_obtain(self) -> bool:
         return True
 
-    @ms.transition("Obtain", "RefreshRx")
+    @ms.transition("Obtain", "RefreshRx", "8f2855d3-7cc8-43d7-89be-dab688387bb2")
     def obtain_to_refresh_rx(self) -> bool:
         return True
 
-    @ms.transition("RefreshRx", "Idle")
+    @ms.transition("RefreshRx", "Idle", "c74d4edc-1b2f-409e-8a52-14b134f76e64")
     def refresh_rx_to_idle(self) -> bool:
         return True
 
-    @ms.transition("Idle", "Idle")
+    @ms.transition("Idle", "Idle", "19786061-3912-4ff9-a43c-90525b5d0a79")
     def idle_to_idle(self) -> bool:
         return True
 
-    @ms.transition("Disabled", "Disabled")
+    @ms.transition("Disabled", "Disabled", "145ed1e8-4f2e-4cbc-808d-8e47719ef801")
     def disabled_to_disabled(self) -> bool:
         return True
 
